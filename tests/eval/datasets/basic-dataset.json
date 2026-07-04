@@ -1,0 +1,37 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "baby_food_puree",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "{\"client_name\": \"GreenSprout\", \"client_desc\": \"Organic baby food subscription service\", \"customer_domain\": \"E-commerce & Health Food\", \"project_overview\": \"Launching a new line of allergen-free plant-based puree pouches\"}"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "ai_coding_assistant",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "{\"client_name\": \"CodePulse\", \"client_desc\": \"AI-powered IDE extension for legacy code refactoring\", \"customer_domain\": \"B2B SaaS & Developer Tools\", \"project_overview\": \"Attracting early adopters through a free beta program and tech blog tutorials\"}"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "fitness_tracker",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "{\"client_name\": \"FitFlow\", \"client_desc\": \"Gamified yoga and mindfulness mobile application\", \"customer_domain\": \"Mobile App & Health Wellness\", \"project_overview\": \"Promoting a 30-day wellness challenge to increase app downloads and premium subscriptions\"}"
+          }
+        ]
+      }
+    }
+  ]
+}
