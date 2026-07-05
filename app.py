@@ -18,71 +18,161 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Custom CSS for rich aesthetics (sleek, modern look)
+# Custom CSS for rich aesthetics (premium dark mode with glassmorphic cards and gradients)
 st.markdown("""
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-    .main {
-        background-color: #fafafa;
-        color: #1e1e1e;
-        font-family: 'Outfit', 'Inter', sans-serif;
+    /* Global App Container background & font overrides */
+    html, body, [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #090d16 0%, #111827 50%, #030712 100%) !important;
+        color: #f3f4f6 !important;
+        font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif !important;
     }
-    .stTextArea textarea {
-        background-color: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        color: #333333;
+    
+    [data-testid="stHeader"] {
+        background: transparent !important;
     }
-    .stTextArea textarea:focus {
-        border-color: #4A90E2;
-        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    
+    /* Input Fields styling override */
+    div[data-baseweb="input"], div[data-baseweb="textarea"] {
+        background-color: rgba(17, 24, 39, 0.7) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+        color: #f3f4f6 !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
+    
+    div[data-baseweb="input"]:focus-within, div[data-baseweb="textarea"]:focus-within {
+        border-color: #818cf8 !important;
+        box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25) !important;
+        background-color: rgba(17, 24, 39, 0.9) !important;
+    }
+    
+    input, textarea {
+        color: #f3f4f6 !important;
+        font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Labels styling */
+    label[data-testid="stWidgetLabel"] p {
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        color: #9ca3af !important;
+        letter-spacing: 0.025em;
+        margin-bottom: 6px !important;
+        text-transform: uppercase;
+    }
+
+    /* Primary CTA Button (Upload Details) styling */
     .stButton>button {
-        background-color: #1E293B;
-        color: #ffffff;
-        border-radius: 8px;
-        font-weight: 600;
-        padding: 0.5rem 2rem;
-        border: none;
-        transition: background-color 0.3s ease;
-    }
-    .stButton>button:hover {
-        background-color: #334155;
-        color: #ffffff;
-    }
-    .copy-container {
-        background-color: #0f172a;
-        color: #f8fafc !important;
-        padding: 28px;
-        border-radius: 16px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-        border: 1px solid #1e293b;
-        margin-top: 20px;
-        font-family: 'Inter', sans-serif;
-    }
-    .copy-container h1, .copy-container h2, .copy-container h3, .copy-container h4, .copy-container h5, .copy-container h6 {
-        color: #f8fafc !important;
-        font-weight: 700;
-        margin-top: 1.5em;
-        margin-bottom: 0.5em;
-    }
-    .copy-container p, .copy-container li, .copy-container span, .copy-container div {
-        color: #cbd5e1 !important;
-        line-height: 1.6;
-    }
-    .copy-container strong {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
         color: #ffffff !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        padding: 0.75rem 2rem !important;
+        border: none !important;
+        box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.3) !important;
+        transition: all 0.2s ease-in-out !important;
+        width: 100%;
+        margin-top: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .stButton>button:hover {
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.5) !important;
+        color: #ffffff !important;
+    }
+
+    .stButton>button:active {
+        transform: translateY(0);
+    }
+
+    /* Download PDF Button styling */
+    div.stDownloadButton > button {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: #ffffff !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        padding: 0.75rem 2rem !important;
+        border: none !important;
+        box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3) !important;
+        transition: all 0.2s ease-in-out !important;
+        width: 100%;
+        margin-top: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    div.stDownloadButton > button:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.5) !important;
+        color: #ffffff !important;
+    }
+    
+    /* Styled container with borders (cards) */
+    div[data-testid="stElementContainer"] > div[style*="border"] {
+        background-color: rgba(17, 24, 39, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        padding: 1.75rem !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+        backdrop-filter: blur(16px) !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Styled notification boxes */
+    div[data-testid="stNotification"] {
+        background-color: rgba(30, 41, 59, 0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        color: #cbd5e1 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Spinner override styling */
+    div[data-testid="stSpinner"] > div {
+        border-color: #818cf8 transparent transparent transparent !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🎯 Marketing Strategy Generator")
-st.markdown("Generate high-impact campaign ideas and marketing copies tailored to your client using Google ADK 2.0 agents.")
+# Custom Header / Title Section
+st.markdown("""
+<div style="text-align: center; margin-bottom: 2rem; margin-top: 1.5rem;">
+    <div style="display: inline-block; background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), rgba(192, 132, 252, 0.2)); border: 1px solid rgba(129, 140, 248, 0.3); border-radius: 20px; padding: 4px 16px; margin-bottom: 1rem;">
+        <span style="color: #c084fc; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+            ✨ Powered by Google ADK 2.0
+        </span>
+    </div>
+    <h1 style="background: linear-gradient(90deg, #818cf8 0%, #c084fc 50%, #f472b6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin: 0;">
+        Marketing Strategy Generator
+    </h1>
+    <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 0.75rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+        Generate high-impact campaign ideas and custom marketing copy using a collaborative team of AI agents.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
-# Text areas for user inputs
-client_name = st.text_area("Client name", placeholder="e.g. GreenSprout", height=68)
-client_desc = st.text_area("Client description", placeholder="e.g. Organic baby food subscription service", height=80)
-customer_domain = st.text_area("Customer Domain", placeholder="e.g. E-commerce & Health Food", height=68)
-project_overview = st.text_area("Project overview", placeholder="e.g. Launching a new line of allergen-free plant-based puree pouches", height=100)
+# Campaign Configuration Form within a glassmorphic container card
+with st.container(border=True):
+    st.markdown("<h3 style='margin-top:0; color:#818cf8; font-size: 1.25rem; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 1.25rem;'>📋 Campaign Configuration</h3>", unsafe_allow_html=True)
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        client_name = st.text_input("Client Name", placeholder="e.g. GreenSprout")
+        customer_domain = st.text_input("Customer Domain", placeholder="e.g. E-commerce & Health Food")
+    with col2:
+        client_desc = st.text_area("Client Description", placeholder="e.g. Organic baby food subscription service", height=95)
+    
+    project_overview = st.text_area("Project Overview", placeholder="e.g. Launching a new line of allergen-free plant-based puree pouches", height=100)
 
 async def execute_agent_workflow(inputs: dict):
     """
@@ -147,7 +237,7 @@ async def execute_agent_workflow(inputs: dict):
     return final_output
 
 # Trigger on button click
-if st.button("upload details"):
+if st.button("Upload Details"):
     # Construct input dict
     inputs = {
         "client_name": client_name,
@@ -168,8 +258,9 @@ if st.button("upload details"):
                 result = asyncio.run(execute_agent_workflow(inputs))
                 
                 # Display final output
-                st.subheader("📋 Generated Marketing Campaigns & Copies")
-                st.markdown(f'<div class="copy-container">{result}</div>', unsafe_allow_html=True)
+                with st.container(border=True):
+                    st.markdown("<h3 style='margin-top:0; color:#818cf8; font-size: 1.25rem; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 1.25rem;'>📋 Generated Marketing Campaigns & Copies</h3>", unsafe_allow_html=True)
+                    st.markdown(result)
                 
                 # Generate PDF and offer download button
                 with st.spinner("Generating PDF..."):
